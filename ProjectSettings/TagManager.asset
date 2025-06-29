@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - ground
+  - jumpWall
+  - BoxTrigger
+  - Box
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Light
+  - Water
+  - UI
+  - Player
+  - BoxInactive
+  - BoxActive
+  - Ground
+  - WallJump
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 703919077
+    locked: 0
+  - name: fireflies
+    uniqueID: 602118131
+    locked: 0
+  - name: BGcloser
+    uniqueID: 1411534857
+    locked: 0
+  - name: levelobj
+    uniqueID: 3986287267
+    locked: 0
+  - name: grass
+    uniqueID: 546870103
+    locked: 0
+  - name: player
+    uniqueID: 2477462121
+    locked: 0
+  - name: grassNearest
+    uniqueID: 2568313719
+    locked: 0
+  - name: BIGLevelObj
+    uniqueID: 3021525109
+    locked: 0
+  - name: nearest
+    uniqueID: 726301317
+    locked: 0
+  - name: light
+    uniqueID: 1812164767
+    locked: 0
