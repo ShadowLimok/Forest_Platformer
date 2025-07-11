@@ -7,11 +7,16 @@ public class AirLift : MonoBehaviour
     private BoxTrigger box;
     [SerializeField] private LayerMask boxLayer;
     [SerializeField] private float power = 10f;
+    private bool boxInLift = false;
+    public BoxCollider2D airLift;
+    public bool boxIsSet = false;
 
     private void Start()
     {
         BoxCollider2D airCollider = GetComponent<BoxCollider2D>();
         airCollider.isTrigger = true;
+        boxInLift = false;
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -29,7 +34,6 @@ public class AirLift : MonoBehaviour
         if (collision.gameObject.CompareTag("Box"))
         {
             box.isInAirLift = false;
-
         }
     }
 
@@ -41,6 +45,10 @@ public class AirLift : MonoBehaviour
             {
                 box.AirLiftAction();
             }
+        }
+        if(boxIsSet)
+        {
+            airLift.size = new Vector2(0f, 0f);
         }
     }
 }

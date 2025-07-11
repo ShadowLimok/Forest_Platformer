@@ -14021,6 +14021,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   power: 500
+  airLift: {fileID: 1299122125}
+  boxIsSet: 0
 --- !u!1 &1339052178
 GameObject:
   m_ObjectHideFlags: 0
@@ -22112,7 +22114,7 @@ GameObject:
   - component: {fileID: 2125184035}
   m_Layer: 9
   m_Name: AirLift
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22192,7 +22194,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125184032}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

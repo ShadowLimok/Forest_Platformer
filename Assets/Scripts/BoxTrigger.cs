@@ -9,9 +9,9 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class BoxTrigger : MonoBehaviour
 {
     private float AirLiftHeight = 8f;
-    private bool isFalling = false;
-    private bool hasLanded = false;
-    private bool playerInside = false;
+    [SerializeField] private bool isFalling = false;
+    [SerializeField] private bool hasLanded = false;
+    [SerializeField] private bool playerInside = false;
     private SpriteRenderer sr;
     private BoxCollider2D groundCol;
     //private Light2D light;
@@ -23,7 +23,7 @@ public class BoxTrigger : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject[] sides;
 
-
+    public bool isInitialize = false;
     public bool isInAirLift = false;
     public string sortingLayerInactive = "BIGLevelObj";
     public string sortingLayerActive = "levelobj";
@@ -37,6 +37,7 @@ public class BoxTrigger : MonoBehaviour
     }
     public void Initialize()
     {
+        isInitialize = true;
         groundCol = GetComponent<BoxCollider2D>();
         groundCol.gameObject.layer = LayerMask.NameToLayer(inactive);
         sr = GetComponent<SpriteRenderer>();
@@ -52,6 +53,7 @@ public class BoxTrigger : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.mass = 50;
         rb.gravityScale = 2;
+        isInAirLift = false;
     }
     public void NotifyPlayerEntered()
     {
@@ -82,6 +84,16 @@ public class BoxTrigger : MonoBehaviour
             BecomeSolid();
         }
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.otherCollider == physicsCollider &&
+            collision.gameObject.CompareTag(ground))
+
+        {
+            hasLanded = false;
+            isFalling = false;
+        }
+    }
 
     private IEnumerator Fall()
     {
@@ -107,12 +119,14 @@ public class BoxTrigger : MonoBehaviour
             }
             groundCol.gameObject.layer = LayerMask.NameToLayer("Ground");;
             sr.sortingLayerName = sortingLayerActive;
+            isInitialize = false;
         }
     }
     public void AirLiftAction()
     {
         if (transform.parent == null) return;
 
+        
         float distanceY = transform.parent.position.y - transform.position.y;
         if(distanceY <= AirLiftHeight)
         {
@@ -123,12 +137,28 @@ public class BoxTrigger : MonoBehaviour
     {
         if (isInAirLift)
         {
-            float speed = 1.5f;
+            rb.velocity = Vector2.zero;
+            float speed = 1f;
             Vector2 currentPos = transform.localPosition;
-            Vector2 targetPos = new Vector2(transform.parent.localPosition.x, AirLiftHeight);
+            Vector2 targetPos = new Vector2(0f, AirLiftHeight);
             Vector2 triggerPos = Vector2.Lerp(currentPos, targetPos, speed * Time.fixedDeltaTime);
             transform.localPosition = triggerPos;
+            if(Vector2.Distance(triggerPos, targetPos) < 0.05f)
+            {
+                transform.localPosition = targetPos;
+                AirLift airLift = GetComponentInParent<AirLift>();
+                if (airLift != null)
+                {
+                    airLift.boxIsSet = true;
+                }
+            }      
             Debug.Log("Двигаем коробку вверх: " + transform.localPosition);
+            if(!isInitialize)
+            {
+                Initialize();
+            }
+            
+            return;
         }
     }
     //private IEnumerator LightOn()
