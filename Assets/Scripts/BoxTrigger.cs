@@ -22,9 +22,9 @@ public class BoxTrigger : MonoBehaviour
     [SerializeField] private BoxCollider2D physicsCollider;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject[] sides;
-   
 
 
+    public bool isInAirLift = false;
     public string sortingLayerInactive = "BIGLevelObj";
     public string sortingLayerActive = "levelobj";
 
@@ -105,8 +105,7 @@ public class BoxTrigger : MonoBehaviour
             {
                 side.layer = LayerMask.NameToLayer(active);
             }
-            groundCol.gameObject.layer = LayerMask.NameToLayer("Ground");
-            //physicsCollider.gameObject.tag = "BoxCollider";
+            groundCol.gameObject.layer = LayerMask.NameToLayer("Ground");;
             sr.sortingLayerName = sortingLayerActive;
         }
     }
@@ -117,22 +116,20 @@ public class BoxTrigger : MonoBehaviour
         float distanceY = transform.parent.position.y - transform.position.y;
         if(distanceY <= AirLiftHeight)
         {
-            //float speed = 1.5f;
-            //Vector2 currentPos = transform.position;
-            //float targetX = transform.parent.position.x;
-            //float newX = Mathf.Lerp(currentPos.x, targetX, speed * Time.deltaTime);
-            //transform.position = new Vector2(newX, currentPos.y);
             BottomLiftMove();
         }
     }
     private void BottomLiftMove()
     {
-        float speed = 1.5f;
-        Vector2 currentPos = transform.position;
-        float targetX = transform.parent.position.x;
-        float newX = Mathf.Lerp(currentPos.x, targetX, speed * Time.deltaTime);
-        float triggerY = Mathf.Lerp(currentPos.y, AirLiftHeight, speed * Time.deltaTime);
-        transform.position = new Vector2(newX, triggerY);
+        if (isInAirLift)
+        {
+            float speed = 1.5f;
+            Vector2 currentPos = transform.localPosition;
+            Vector2 targetPos = new Vector2(transform.parent.localPosition.x, AirLiftHeight);
+            Vector2 triggerPos = Vector2.Lerp(currentPos, targetPos, speed * Time.fixedDeltaTime);
+            transform.localPosition = triggerPos;
+            Debug.Log("Двигаем коробку вверх: " + transform.localPosition);
+        }
     }
     //private IEnumerator LightOn()
     //{
