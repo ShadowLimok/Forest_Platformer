@@ -8,7 +8,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BoxTrigger : MonoBehaviour
 {
-    private Animator animator;
+    private float AirLiftHeight = 8f;
     private bool isFalling = false;
     private bool hasLanded = false;
     private bool playerInside = false;
@@ -32,6 +32,11 @@ public class BoxTrigger : MonoBehaviour
     {
         //light = GetComponentInChildren<Light2D>();
         //light.enabled = false;
+       Initialize();
+
+    }
+    public void Initialize()
+    {
         groundCol = GetComponent<BoxCollider2D>();
         groundCol.gameObject.layer = LayerMask.NameToLayer(inactive);
         sr = GetComponent<SpriteRenderer>();
@@ -47,9 +52,7 @@ public class BoxTrigger : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.mass = 50;
         rb.gravityScale = 2;
-
     }
-
     public void NotifyPlayerEntered()
     {
         playerInside = true;
@@ -106,6 +109,30 @@ public class BoxTrigger : MonoBehaviour
             //physicsCollider.gameObject.tag = "BoxCollider";
             sr.sortingLayerName = sortingLayerActive;
         }
+    }
+    public void AirLiftAction()
+    {
+        if (transform.parent == null) return;
+
+        float distanceY = transform.parent.position.y - transform.position.y;
+        if(distanceY <= AirLiftHeight)
+        {
+            //float speed = 1.5f;
+            //Vector2 currentPos = transform.position;
+            //float targetX = transform.parent.position.x;
+            //float newX = Mathf.Lerp(currentPos.x, targetX, speed * Time.deltaTime);
+            //transform.position = new Vector2(newX, currentPos.y);
+            BottomLiftMove();
+        }
+    }
+    private void BottomLiftMove()
+    {
+        float speed = 1.5f;
+        Vector2 currentPos = transform.position;
+        float targetX = transform.parent.position.x;
+        float newX = Mathf.Lerp(currentPos.x, targetX, speed * Time.deltaTime);
+        float triggerY = Mathf.Lerp(currentPos.y, AirLiftHeight, speed * Time.deltaTime);
+        transform.position = new Vector2(newX, triggerY);
     }
     //private IEnumerator LightOn()
     //{

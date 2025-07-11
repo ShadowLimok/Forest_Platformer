@@ -13320,7 +13320,7 @@ Transform:
   m_GameObject: {fileID: 1137152787}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.1, y: 7.3, z: 0}
+  m_LocalPosition: {x: -159.5, y: 26.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13400,6 +13400,10 @@ PrefabInstance:
     - target: {fileID: 7021225787419458391, guid: 8dbe564955900424e9c25534f34a3624, type: 3}
       propertyPath: m_Name
       value: Box 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021225787419458391, guid: 8dbe564955900424e9c25534f34a3624, type: 3}
+      propertyPath: m_TagString
+      value: Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13988,7 +13992,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 8.304687}
+  m_Offset: {x: -0.0109604, y: 8.304687}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -13999,7 +14003,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 17.609373}
+  m_Size: {x: 1.3726908, y: 17.609373}
   m_EdgeRadius: 0
 --- !u!114 &1299122126
 MonoBehaviour:
@@ -14016,7 +14020,7 @@ MonoBehaviour:
   boxLayer:
     serializedVersion: 2
     m_Bits: 0
-  power: 10
+  power: 500
 --- !u!1 &1339052178
 GameObject:
   m_ObjectHideFlags: 0
@@ -22112,7 +22116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &2125184033
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22225,12 +22229,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
+    - - {x: -0.4900055, y: 0.35012054}
       - {x: -1.2228795, y: 0.16721916}
       - {x: -0.5, y: -0.5}
       - {x: 0.5, y: -0.5}
-      - {x: 1.1368463, y: 0.15320396}
-      - {x: 0.5, y: 0.5}
+      - {x: 1.2467604, y: 0.12322807}
+      - {x: 0.48001608, y: 0.41007233}
   m_UseDelaunayMesh: 0
 --- !u!1001 &375800984727455820
 PrefabInstance:

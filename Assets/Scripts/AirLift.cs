@@ -16,13 +16,12 @@ public class AirLift : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & boxLayer) != 0)
+        if(collision.gameObject.CompareTag("Box"))
         {
-            Rigidbody2D rb = collision.attachedRigidbody;
-            if (rb != null)
-            {
-                rb.AddForce(Vector2.up * power);
-            }
+            BoxTrigger script = collision.GetComponent<BoxTrigger>();
+            collision.gameObject.transform.SetParent(transform, true);
+            script.AirLiftAction();
+
         }
     }
 
