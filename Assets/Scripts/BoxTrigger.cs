@@ -8,7 +8,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BoxTrigger : MonoBehaviour
 {
-    private float AirLiftHeight = 8f;
+    private float AirLiftHeight = 6.5f;
     [SerializeField] private bool isFalling = false;
     [SerializeField] private bool hasLanded = false;
     [SerializeField] private bool playerInside = false;
