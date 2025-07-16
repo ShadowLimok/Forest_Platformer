@@ -149,16 +149,16 @@ public class Box : MonoBehaviour
                 AirLift airLift = GetComponentInParent<AirLift>();
                 if (airLift != null)
                 {
-                    if (!isInitialize)
-                    {
-                        Initialize();
-                    }
+                    
                     airLift.boxIsSet = true;
                 }
             }      
             Debug.Log("Двигаем коробку вверх: " + transform.localPosition);
-            
-            
+
+            if (!isInitialize)
+            {
+                Initialize();
+            }
             return;
         }
     }
