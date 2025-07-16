@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AirLift : MonoBehaviour
 {
-    private BoxTrigger box;
+    private Box box;
     [SerializeField] private LayerMask boxLayer;
     [SerializeField] private float power = 10f;
     private bool boxInLift = false;
@@ -23,7 +23,7 @@ public class AirLift : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Box"))
         {
-            BoxTrigger script = collision.GetComponent<BoxTrigger>();
+            Box script = collision.GetComponent<Box>();
             collision.gameObject.transform.SetParent(transform, true);
             box = script;
             box.isInAirLift = true;

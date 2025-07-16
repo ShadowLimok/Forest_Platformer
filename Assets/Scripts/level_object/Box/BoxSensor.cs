@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 public class BoxSensor : MonoBehaviour
 {
-    public BoxTrigger parent;
+    public Box parent;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

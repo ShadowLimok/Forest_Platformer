@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class BoxTrigger : MonoBehaviour
+public class Box : MonoBehaviour
 {
     private float AirLiftHeight = 6.5f;
     [SerializeField] private bool isFalling = false;
@@ -149,14 +149,15 @@ public class BoxTrigger : MonoBehaviour
                 AirLift airLift = GetComponentInParent<AirLift>();
                 if (airLift != null)
                 {
+                    if (!isInitialize)
+                    {
+                        Initialize();
+                    }
                     airLift.boxIsSet = true;
                 }
             }      
             Debug.Log("Двигаем коробку вверх: " + transform.localPosition);
-            if(!isInitialize)
-            {
-                Initialize();
-            }
+            
             
             return;
         }
