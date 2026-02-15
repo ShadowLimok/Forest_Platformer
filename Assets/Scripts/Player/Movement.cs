@@ -71,19 +71,24 @@ public class Movement : MonoBehaviour
         Debug.DrawRay(origin, directionLeft * distance, Color.yellow);
         Debug.DrawRay(origin, directionRight * distance, Color.green);
 
-        if (hitLeft.collider != null && movementX <0)
+        if (hitLeft.collider != null && movementX < 0) //-0.1f
         {
             isPushing = true;
             return true;
         }
 
-        if (hitRight.collider != null && movementX >0)
+        else if (hitRight.collider != null && movementX > 0)  // 0.1f
         {
             isPushing = true;
             return true;
         }
+        //else
+        //{
+        //    isPushing=false;
+        //    return false;
+    //}
         return false;
-    }
+}
     bool IsGrounded()
     {
 
@@ -205,6 +210,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
+            //isPushing = false;
             animator.SetBool("boxIsNear", false);
             Debug.Log("Not Pushing");
         }
